@@ -1,4 +1,4 @@
-<!-- views/contacts/index.ejs-->
+<!-- views/solicituds/index.ejs-->
 
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,12 @@
  <body>
   <% include ../partials/nav %>
 
-  <div class="container contact contact-index">
+  <div class="container solicitud solicitud-index">
    <h2>Index</h2>
    <ul class="list-group">
-    <% contacts.forEach(function(contact) { %>
+    <% solicituds.forEach(function(solicitud) { %>
      <li class="list-group-item">
-      <a href="/contacts/<%= contact._id %>"><%= contact.name %></a>
+      <a href="/solicituds/<%= solicitud._id %>"><%= solicitud.título %></a>
      </li>
     <% }) %>
    </ul>

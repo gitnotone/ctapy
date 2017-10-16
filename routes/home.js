@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Home
 router.get("/", function(req, res){
- res.redirect("/contacts");
+ res.redirect("/solicituds");
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ var methodOverride = require("method-override");
 var app = express();
 
 // DB setting
-mongoose.connect(process.env.MONGO_DB, { useMongoClient: true });
+mongoose.connect(process.env.LIBROS_DB, { useMongoClient: true });
 var db = mongoose.connection;
 db.once("open", function(){
  console.log("DB connected");
@@ -25,7 +25,7 @@ app.use(methodOverride("_method"));
 
 // Routes
 app.use("/", require("./routes/home"));
-app.use("/contacts", require("./routes/contacts"));
+app.use("/solicituds", require("./routes/solicitud"));
 
 // Port setting
 var port = process.env.PORT || 3000;
