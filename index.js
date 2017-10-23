@@ -1,21 +1,20 @@
-//index.js
-
-var express    = require("express");
-var mongoose   = require("mongoose");
-var bodyParser  = require("body-parser");
+var express        = require("express");
+var mongoose       = require("mongoose");
+var bodyParser     = require("body-parser");
 var methodOverride = require("method-override");
-var flash     = require("connect-flash"); // 1
-var session    = require("express-session"); // 1
+var flash          = require("connect-flash");
+var session        = require("express-session");
+var passport       = require("./config/passport");
 var app = express();
 
 // DB setting
 mongoose.connect(process.env.LIBROS_DB, { useMongoClient: true });
 var db = mongoose.connection;
 db.once("open", function(){
- console.log("DB connected");
+  console.log("DB connected");
 });
 db.on("error", function(err){
- console.log("DB ERROR : ", err);
+  console.log("DB ERROR : ", err);
 });
 
 // Other settings
@@ -27,14 +26,24 @@ app.use(methodOverride("_method"));
 app.use(flash());
 app.use(session({secret:"MySecret"}));
 
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Custom Middlewares
+app.use(function(req,res,next){
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+  next();
+})
+
 // Routes
 app.use("/", require("./routes/home"));
-app.use("/solicituds", require("./routes/solicitud"));
 app.use("/posts", require("./routes/posts"));
 app.use("/users", require("./routes/users"));
 
 // Port setting
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 app.listen(port, function(){
  console.log("server on");
 });

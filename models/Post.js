@@ -1,37 +1,34 @@
-// models/Post.js
-
 var mongoose = require("mongoose");
-var util  = require("../util");
 
 // schema
 var postSchema = mongoose.Schema({
-  title:{type:String, required:[true,"Title is required!"]},
-  body:{type:String, required:[true,"Body is required!"]},
- createdAt:{type:Date, default:Date.now},
- updatedAt:{type:Date},
+  title:{type:String, required:true},
+  body:{type:String},
+  createdAt:{type:Date, default:Date.now},
+  updatedAt:{type:Date},
 },{
- toObject:{virtuals:true}
+  toObject:{virtuals:true}
 });
 
-// virtuals // 3
+// virtuals
 postSchema.virtual("createdDate")
 .get(function(){
- return util.getDate(this.createdAt);
+  return getDate(this.createdAt);
 });
 
 postSchema.virtual("createdTime")
 .get(function(){
- return util.getTime(this.createdAt);
+  return getTime(this.createdAt);
 });
 
 postSchema.virtual("updatedDate")
 .get(function(){
- return util.getDate(this.updatedAt);
+  return getDate(this.updatedAt);
 });
 
 postSchema.virtual("updatedTime")
 .get(function(){
- return util.getTime(this.updatedAt);
+  return getTime(this.updatedAt);
 });
 
 // model & export
@@ -40,15 +37,15 @@ module.exports = Post;
 
 // functions
 function getDate(dateObj){
- if(dateObj instanceof Date)
-  return dateObj.getFullYear() + "-" + get2digits(dateObj.getMonth()+1)+ "-" + get2digits(dateObj.getDate());
+  if(dateObj instanceof Date)
+    return dateObj.getFullYear() + "-" + get2digits(dateObj.getMonth()+1)+ "-" + get2digits(dateObj.getDate());
 }
 
 function getTime(dateObj){
- if(dateObj instanceof Date)
-  return get2digits(dateObj.getHours()) + ":" + get2digits(dateObj.getMinutes())+ ":" + get2digits(dateObj.getSeconds());
+  if(dateObj instanceof Date)
+    return get2digits(dateObj.getHours()) + ":" + get2digits(dateObj.getMinutes())+ ":" + get2digits(dateObj.getSeconds());
 }
 
 function get2digits(num){
- return ("0" + num).slice(-2);
+  return ("0" + num).slice(-2);
 }
