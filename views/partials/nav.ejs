@@ -6,16 +6,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand">My Website</div>
+      <div class="navbar-brand">CTA Paraguay-Corea</div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/posts">게시판</a></li>
+        <li><a href="/posts">Board</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if(isAuthenticated){ %>
+          <li><a href="http://solicitud.herokyapp.com">Solicitud de Libros</a></li>
           <li><a href="/users/<%= currentUser.username %>">My Account</a></li>
           <li><a href="/logout">Logout</a></li>
         <% } else { %>

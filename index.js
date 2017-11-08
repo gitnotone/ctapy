@@ -8,7 +8,7 @@ var passport       = require("./config/passport");
 var app = express();
 
 // DB setting
-mongoose.connect(process.env.LIBROS_DB, { useMongoClient: true });
+mongoose.connect(process.env.CTAPY_DB, { useMongoClient: true });
 var db = mongoose.connection;
 db.once("open", function(){
   console.log("DB connected");
