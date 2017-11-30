@@ -13,10 +13,10 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about">Plan</a></li>
         <li><a href="/posts">Board</a></li>
+        <li><a href="http://solicitud.herokuapp.com">Solicitud de Libros</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if(isAuthenticated){ %>
-          <li><a href="http://solicitud.herokuapp.com">Solicitud de Libros</a></li>
           <li><a href="/users/<%= currentUser.username %>">My Account</a></li>
           <li><a href="/logout">Logout</a></li>
         <% } else { %>
